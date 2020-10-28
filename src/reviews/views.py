@@ -5,6 +5,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from .forms import UserForm, Appuserform
+from django.contrib.auth.models import User
+from .models import *
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 
@@ -13,12 +16,24 @@ def login_request(request):
     if request.method == 'POST':
         _username = request.POST.get('username')
         _password = request.POST.get('password')
-        user = authenticate(username=_username, password=_password)
-        if user is not None:
-            login(request, user)
-            return HttpResponse("You have successfully signed in !!")
-        else:
+        print(_username)
+        print(_password)
+
+        try:
+            u = User.objects.get(username=_username)
+            login(request, u)
+            if u is not None:
+                # return HttpResponse("You have successfully signed in !!")
+                # messages.success(
+                #    request, f"You are now logged in as {request.user.username}")
+                return redirect('/ratify/home')
+            else:
+                messages.error(request, 'The form is invalid.')
+        except User.DoesNotExist:
             messages.error(request, 'The form is invalid.')
+
+        # uu = authenticate(username=_username, password=_password)
+        # print(uu)
 
     return render(request, "reviews/login.html")
 
@@ -51,4 +66,10 @@ def signup(request):
 
 
 def homepage(request):
-    return HttpResponse('Working')
+    print(request.user.username)
+    return render(request, 'reviews/homepage.html')
+
+
+def logout_request(request):
+    logout(request)
+    return redirect('/ratify/login')

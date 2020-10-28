@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="7.1 Grid.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="{% static 'reviews/homepage/style.css' %}"
+      type="text/css"
+    />
+
+    <title>{% block title %}Home{% endblock %}</title>
+  </head>
+  <body>
+    <nav>
+      <div class="row__main-nav clearfix">
+        <ul class="main-nav">
+          <li>
+            <a href="#">Ratify</a>
+            <a href="#">Categories</a>
+            <a href="#">Statistics</a>
+            <a href="{% url 'reviews:logout_request' %}">Logout</a>
+          </li>
+        </ul>
+        <a class="btn" href="#">
+          <img
+            src="{% static 'reviews/images/sonu.jpg' %}"
+            alt="user"
+            class="img-circle"
+          />
+          <h3>Sonu Nigam</h3>
+        </a>
+      </div>
+    </nav>
+
+    <div>
+      {% block content %}
+      <!--All extended template's content will be placed here-->
+      {% endblock %}
+    </div>
+  </body>
+</html>

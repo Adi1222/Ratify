@@ -8,7 +8,7 @@ deleted_choices = [('N', 'No'), ('Y', 'Yes')]
 
 class Category(models.Model):
     catname = models.CharField(unique=True, blank=False, max_length=100)
-    catimg = models.ImageField(upload_to='cat_img', blank=True, null=True)
+    # catimg = models.ImageField(upload_to='cat_img', blank=True, null=True)
 
     def calculate_products(self):
         return self.product_set.count()

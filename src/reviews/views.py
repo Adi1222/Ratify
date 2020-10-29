@@ -66,8 +66,39 @@ def signup(request):
 
 
 def homepage(request):
-    print(request.user.username)
-    return render(request, 'reviews/homepage.html')
+    latest_review_list = Review.objects.order_by('-pub_date')[:10]
+    top_products = []
+    for product in Product.objects.all():
+        if product.average_rating >= 3 and product.total_rating > 10:
+            top_products.push(product)
+
+    return render(request, 'reviews/homepage.html', {'latest_review_list': latest_review_list, 'top_products': top_products})
+
+
+def review_detail(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    return render(request, 'reviews/review_detail.html', {'review': review})
+
+
+def user_review_list(request, username=None):
+    user = None
+
+    if not username:
+        user = request.user
+
+    user = User.objects.get(username=username)
+
+    latest_review_list = Review.objects.filter(
+        rated_by=user).order_by('-pub_date')
+    context = {
+        'latest_review_list': latest_review_list,
+        'username': username,
+    }
+    return render(request, 'reviews/user_review_list.html', context)
+
+
+def categories(request):
+    return render(request, 'reviews/categories.html')
 
 
 def logout_request(request):

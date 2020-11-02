@@ -98,7 +98,8 @@ def user_review_list(request, username=None):
 
 
 def categories(request):
-    return render(request, 'reviews/categories.html')
+    categories = Category.objects.all()
+    return render(request, 'reviews/categories.html', {'categories': categories})
 
 
 def logout_request(request):

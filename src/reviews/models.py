@@ -27,10 +27,12 @@ class Product(models.Model):
     price = models.IntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_by = models.CharField(max_length=25)
+    website = models.CharField(max_length=25, null=True)
     is_deleted = models.CharField(
         max_length=1, choices=deleted_choices, default='N')
     created_on = models.DateTimeField(auto_now_add=True, blank=True)
     modified_on = models.DateTimeField(auto_now=True, blank=True, null=True)
+    specification = models.TextField(max_length=200, null=True)
     pimg = models.ImageField(upload_to='prod_img', blank=True, null=True)
 
     def average_rating(self):

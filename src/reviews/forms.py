@@ -45,3 +45,10 @@ class Appuserform(forms.ModelForm):
     class Meta:
         model = Appuser
         fields = ['mobile']
+
+
+class AddProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['pimg', 'pname', 'company', 'price',
+                  'category', 'website', 'specification']

@@ -4,10 +4,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
-from .forms import UserForm, Appuserform
+from .forms import UserForm, Appuserform, AddProductForm
 from django.contrib.auth.models import User
 from .models import *
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 
@@ -100,6 +101,55 @@ def user_review_list(request, username=None):
 def categories(request):
     categories = Category.objects.all()
     return render(request, 'reviews/categories.html', {'categories': categories})
+
+
+def addproduct(request):
+    if request.method == 'POST':
+        pform = AddProductForm(request.POST, request.FILES)
+        if pform.is_valid():
+            data = pform.cleaned_data
+            img = data["pimg"]
+            print(img)
+            product = pform.save(commit=False)
+            product.created_by = request.user.username
+            product.save()
+
+            '''
+            pname = request.POST['pname']
+            company = request.POST['company']
+            price = request.POST['price']
+            cat = request.POST['category']
+            category = Category.objects.get(catname=cat)
+            website = request.POST['website']
+            specification = request.POST['speci']
+            data = pform.cleaned_data
+            image = data["pimg"]
+            print(image)
+            print()
+
+            if image != None:
+                product = Product(pname=pname, company=company, price=price, category=category, website=website,
+                                  specification=specification, pimg=image, created_by=request.user.username)
+                # product.save()
+
+                fs = FileSystemStorage()
+                filename = fs.save(image.name, image)
+
+                uploaded_file_url = fs.url(filename)
+                print(uploaded_file_url)
+
+            else:
+                pass'''
+        else:
+            print('hi')
+            categories = Category.objects.all()
+            pform = AddProductForm()
+            return render(request, 'reviews/addproduct.html', {'categories': categories, 'pform': pform})
+
+    else:
+        categories = Category.objects.all()
+        pform = AddProductForm()
+        return render(request, 'reviews/addproduct.html', {'categories': categories, 'pform': pform})
 
 
 def logout_request(request):

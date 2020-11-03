@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+
+        <link rel="stylesheet" href="../categories/7.1 Grid.css">
+        <link rel="stylesheet" href="addProduct.css">
+
+        <title>Add Product</title>
+    </head>
+    <body>
+        <nav>
+            <div class="row__main-nav clearfix">
+                <ul class="main-nav">
+                    <li>
+                        <a href="../index.html">Ratify</a>
+                        <a href="../categories/categories.html">Categories</a>
+                        <a href="#">Statistics</a>
+                        <a href="#">Add Product</a>
+                    </li>
+                </ul>
+                <a class="btn" href="../userHomePage/userHomePage.html">
+                    <img
+                        src="../sonu.jpg"
+                        alt="user"
+                        class="img-circle"
+                    />
+                    <h3>Sonu Nigam</h3>
+                </a>
+            </div>
+        </nav>
+        <section class="register-page">
+            <div class="form">
+              <form class="register-form">
+                <div class="col span-1-of-2">
+                  <img src="" height="200" alt="Image preview..." id="product-pic"><br>
+                  <input type="file" onchange="previewFile()">
+                </div>
+                <div class="col span-1-of-2">
+                  <input type="text" placeholder="Product name"/>
+                  <input type="text" placeholder="Company"/>
+                  <select name="category" title="Categories">
+                    <option value="select">Category</option>
+                    <option value="washing-machine">Washing Machine</option>
+                    <option value="smartphone">Smartphone</option>
+                  </select>
+                  <input type="text" placeholder="Price"/>
+                  <textarea name="message" placeholder="Specifications"></textarea>
+                </div>
+                <button>create</button>
+              </form>
+            </div>
+          </div>
+          <script src="addProduct.js"></script>
+        </section>
+    </body>
+</html>

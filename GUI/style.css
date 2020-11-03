@@ -169,6 +169,13 @@ body {
     margin: 2rem 0;
 }
 
+.comment-box a:link,
+.comment-box a:active,
+.comment-box a:visited {
+    text-decoration: none;
+    color: #777;
+}
+
 .user-img {
     width:50px;
     float:left;
@@ -233,7 +240,7 @@ body {
 
 .downvote {
     font-size: 2rem;
-    margin-right: 1rem
+    margin-right: 1rem;
 }
 
 .downvote:link,

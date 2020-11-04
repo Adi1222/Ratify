@@ -156,6 +156,12 @@ def addproduct(request):
         return render(request, 'reviews/addproduct.html', {'categories': categories, 'pform': pform})
 
 
+def products(request, cid):
+    # products = Product.objects.get(category_id=cid)
+    category = Category.objects.get(id=cid)
+    return render(request, 'reviews/products.html')
+
+
 def logout_request(request):
     logout(request)
     return redirect('/ratify/login')

@@ -12,12 +12,14 @@
 
         <section class="register-page">
             <div class="form">
-              <form class="register-form" action="{% url 'reviews:addproduct' %}" method="POST">
+              <form class="register-form" action="{% url 'reviews:addproduct' %}" method="POST" enctype="multipart/form-data">
               {% csrf_token %}
           
                     <div class="col span-1-of-2">
+                    
+                
                   
-                  { {pform.as_p }}
+                  {{pform.as_p }}
                   <!--<input type="file" name="pimg" onchange="previewFile()">-->
 
                 </div>

@@ -95,6 +95,93 @@ body {
 }
 
 /*---------------------------------------------------------------------------------------------------------------------------------------------*/
+/*                                                                    User Details                                                                 */
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.user-header {
+    margin: 2rem;
+    font-size: 3.2rem;
+    color: black;
+}
+
+.col {
+    color: #000;
+    text-align: center;
+    border-right: 1px solid #777;
+    height: 15rem;
+}
+
+.col:last-child {
+    border: none;
+}
+
+.user-info {
+    padding: 5rem 2rem;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    width: 50%;
+    margin-left: 2rem;
+}
+
+.col .user-details {
+    padding-top: 3rem;
+    text-align: start;
+    line-height: 120%;
+    vertical-align: middle;
+    margin-top: -5px;
+    margin-left: 1.5rem;
+}
+
+.col .user-details h2 {
+    margin-bottom: 2rem;
+}
+
+.col .user-details h4 {
+    margin-bottom: 1rem;
+}
+
+.col .user-details .user-detail-icon {
+    margin-right: 1rem;
+    float: left;
+    margin: 0.2rem 2rem;  
+}
+
+.additional-details {
+    margin-right: 1.5rem;
+    padding-top: 2rem;
+}
+
+.additional-details h4 {
+    margin-bottom: 1rem;
+} 
+
+.edit-btn {
+    width: 75%;
+    margin-top: 4rem;
+    padding: 1rem 0;
+    background-color: #fff;
+    color: #2998ff;
+    font-size: 2rem;
+    cursor: pointer;
+    border: none;
+}
+
+.edit-btn:hover {
+    background-color: #2998ff;
+    color: #fff;
+    border: none;
+    transition: 0.2s all;
+}
+
+.border-bottom {
+    margin-top: 3rem;
+    margin-bottom: -3rem;
+    border-bottom: 1px solid #777;
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
 /*                                                                    Products                                                                 */
 /*---------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -112,6 +199,10 @@ body {
     padding: 1rem 1rem 0rem 1rem;
     height: 30rem;
     border-bottom: 1px solid #000;
+}
+
+.product-box:last-of-type {
+    margin-bottom: 2rem;
 }
 
 .product-img {

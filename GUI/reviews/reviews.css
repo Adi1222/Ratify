@@ -15,9 +15,6 @@ html {
   
 body {
     box-sizing: border-box; 
-}
-  
-  body {
     font-family: "Lato", sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -25,86 +22,10 @@ body {
     color: #777;
 }
 
-/*---------------------------------------------------------------------------------------------------------------------------------------------*/
-/*                                                         Reusable Components                                                                 */
-/*---------------------------------------------------------------------------------------------------------------------------------------------*/
-
 .row {
     margin: 0 auto;
     max-width: 1140px;
 }
-
-.clearfix {zoom: 1}
-.clearfix:after {
-    content: '.';
-    clear: both;
-    display: block;
-    height: 0;
-    visibility: hidden;
-}
-
-.btn {
-    margin-top: 1rem;
-    margin-right: 2rem;
-    padding: 0.5rem 1.5rem;
-    border: none;
-    text-decoration: none;
-    float: right;
-    color: white;
-    background-color: rgba(0,0,0);
-}
-
-.btn img {
-    display: inline; 
-    float: left;
-    width: 4rem;
-    margin-right: 1rem;
-}
-
-.btn h3 {
-    display: inline; 
-    float: left;
-    padding: 0.7rem 0 0 0;
-}
-
-/*.btn {
-    display: inline-block;
-    font-size: 2rem;
-    margin-top: 2rem;
-    margin-right: 2rem;
-    padding: 0.5rem 1.5rem;
-    border-radius: 3rem;
-    font-weight: 300;
-    text-decoration: none;
-    float: right;
-    background-color: #2998ff;
-    color: white;
-}
-
-.btn-full:link,
-.btn-full:visited {
-    background-color: #0f70ca;
-    color: white;
-    margin-right: 15px;
-}
-
-.btn-ghost:link,
-.btn-ghost:visited{
-    background-color: #0f70ca;
-    color: white;
-}
-
-.btn:hover,
-.btn:active {
-    background-color: #0f70ca;
-    color: white;
-}
-
-.btn-ghost:hover,
-.btn-ghost:active {
-    background-color: #0f70ca;
-    color: #fff;
-}*/
 
 /*---------------------------------------------------------------------------------------------------------------------------------------------*/
 /*                                                                  Navigation                                                                 */
@@ -139,33 +60,143 @@ body {
     color: #2998ff; 
 }
 
-/*--------------------------------------------------------------------------------------------------------------------------------------------*/
-/*                                                                Section Latest                                                              */
-/*--------------------------------------------------------------------------------------------------------------------------------------------*/
+.clearfix {zoom: 1}
+.clearfix:after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
 
-.section-latest {
+.btn {
+    margin-top: 1rem;
+    margin-right: 2rem;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    text-decoration: none;
+    float: right;
+    color: white;
+    background-color: rgba(0,0,0);
+}
+
+.btn img {
+    border-radius: 50%;
+    display: inline; 
+    float: left;
+    width: 4rem;
+    margin-right: 1rem;
+}
+
+.btn h3 {
+    display: inline; 
+    float: left;
+    padding: 0.7rem 0 0 0;
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+/*                                                                Product Info                                                                 */
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.section-product-info {
+    margin-top: 3rem;
+}
+
+.product-img {
+    height: 25rem;
+    float: left;
+    margin-left: 5rem;
+}
+
+.product-details {
+    margin-top: 2rem;
+    float: left;
+}
+
+.product-details h2 {
+    text-decoration: none;
+    color: #000;
+}
+
+.product-details h4 {
+    font-size: 105%;
+    color: #000;
+}
+
+.product-value {
+    color: #2998ff;
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+/*                                                              Review Section                                                                 */
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.section-reviews {
     height: 50rem;
     padding: 5rem;
 }
 
-.section-latest h3 {
+.section-reviews h2 {
     color: #000;
     font-size: 2.5rem;
 }
 
 .latest-reviews {
-    width: 73%;
-    float: left;
-}
-
-.panel-top-picks {
-    margin-left: 1rem;
-    width: 25%;
-    float: right;
+    width: 100%;
 }
 
 .comment-box {
     margin: 2rem 0;
+    position: relative;
+}
+
+/*------------------------Form----------------------------*/
+
+.form {
+    position: absolute;
+    bottom: -47rem;
+    margin-bottom: 5rem;
+    width: 100%;
+    background: #FFFFFF;
+    text-align: center;
+}
+
+.form h2 {
+    text-align: start;
+    margin-bottom: 2rem;
+}
+
+.form select,
+.form textarea {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.form textarea {
+    height: 20rem;
+    resize: none;
+}
+
+.form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #2998ff;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
 }
 
 .comment-box a:link,
@@ -173,6 +204,21 @@ body {
 .comment-box a:visited {
     text-decoration: none;
     color: #777;
+}
+
+.delete-review {
+    margin-right: 1rem;
+    color: #DD4F43;
+}
+
+.delete-review,
+.edit-review {
+    float: right;
+    font-size: 2rem;
+}
+
+.product-rating .value {
+    color: #2998ff;
 }
 
 .user-img {
@@ -261,25 +307,4 @@ h4 {
     font-size: 1.5rem;
     text-transform: uppercase;
     color: rgb(0, 122, 184);
-}
-
-.panel-top-picks h3 {
-    margin-bottom: 1rem;
-}
-
-.top-pick-item {
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(120,130,140,.13);
-}
-
-.top-pick-item .product-name,
-.top-pick-item span {
-    width: 75%;
-}
-
-.upvote-count {
-    float: right;
-    font-size: 110%;
-    margin-top: 1.3rem;
-    color: #263238;
 }

@@ -16,5 +16,7 @@ urlpatterns = [
 
     path('addproduct/', views.addproduct, name='addproduct'),
 
+    path('category/<int:cid>/', views.products, name='products'),
+
     path('logout/', views.logout_request, name='logout_request'),
 ]

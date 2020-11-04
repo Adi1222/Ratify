@@ -69,9 +69,12 @@ def signup(request):
 def homepage(request):
     latest_review_list = Review.objects.order_by('-pub_date')[:10]
     top_products = []
-    for product in Product.objects.all():
-        if product.average_rating >= 3 and product.total_rating > 10:
-            top_products.push(product)
+    allproducts = Product.objects.all()
+
+    '''if allproducts != None:
+        for product in Product.objects.all():
+            if product.average_rating >= 3 and product.total_rating > 10:
+                top_products.push(product)'''
 
     return render(request, 'reviews/homepage.html', {'latest_review_list': latest_review_list, 'top_products': top_products})
 
@@ -113,6 +116,7 @@ def addproduct(request):
             product = pform.save(commit=False)
             product.created_by = request.user.username
             product.save()
+            return redirect('/ratify/home/')
 
             '''
             pname = request.POST['pname']

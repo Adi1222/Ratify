@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
-from .forms import UserForm, Appuserform, AddProductForm
+from .forms import UserForm, Appuserform, AddProductForm, ReviewForm
 from django.contrib.auth.models import User
 from .models import *
 from django.core.exceptions import ObjectDoesNotExist
@@ -157,9 +157,39 @@ def addproduct(request):
 
 
 def products(request, cid):
-    # products = Product.objects.get(category_id=cid)
+    #products = Product.objects.get(category_id=cid)
+    products = get_object_or_404(Product, category_id=cid)
     category = Category.objects.get(id=cid)
     return render(request, 'reviews/products.html')
+
+
+def product_detail(request, cid, pid):
+    product = Product.objects.filter(pk=pid, category_id=cid)
+    form = ReviewForm()
+    return render(request, 'reviews/product_detail.html', {'product': product, 'form': form})
+
+def add_review(request, cid, pid):
+    product = Product.objects.filter(pk=pid, category_id=cid)
+    category = get_object_or_404(Category, pk=cid)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            rating = form.cleaned_data['rating']
+            comment = form.cleaned_data['comment']
+            user_name = form.cleaned_data['user_name']
+            review = Review()
+            review.product = product
+            review.category = category
+            review.rated_by = request.user
+            review.rating = rating
+            review.comment = comment
+            review.pub_date = datetime.datetime.now()
+            review.save()
+            return HttpResponseRedirect(reverse('reviews:`product_detail', args=(product.id,)))
+
+    form = ReviewForm()
+    return render(request, 'reviews/product_detail.html', {'product': product, 'form': form})
+            
 
 
 def logout_request(request):

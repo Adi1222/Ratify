@@ -86,17 +86,20 @@ def review_detail(request, review_id):
 
 def user_review_list(request, username=None):
     user = None
-
     if not username:
         user = request.user
+    else:
+        user = User.objects.filter(username=username)
 
-    user = User.objects.get(username=username)
+    appuser = Appuser.objects.get(user=user)    
+    latest_review_list = Review.objects.filter(rated_by=appuser).order_by('-pub_date')
 
-    latest_review_list = Review.objects.filter(
-        rated_by=user).order_by('-pub_date')
+
     context = {
         'latest_review_list': latest_review_list,
-        'username': username,
+        'username': user.username,
+        'appuser': appuser
+
     }
     return render(request, 'reviews/user_review_list.html', context)
 

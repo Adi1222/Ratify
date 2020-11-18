@@ -1,0 +1,83 @@
+{% extends 'reviews/base.html' %}
+{% load static %} 
+{% block title %}Product Detail{%endblock %} 
+
+{% block content %}
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'reviews/ProductDetail/reviews.css' %}"
+    />
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+
+     <section class="section-product-info">
+            <div class="row">
+                <div class="col span-1-of-3">
+                    <img src="{{product.pimg.url}}" alt="error" class="product-img">
+                </div>
+                <div class="col span-2-of-3 product-details">
+                    <h2>{{product.pname}}</h2> 
+                    <h4>Description</h4>
+                    <p>{{product.specification}}</p>
+                </div>
+            </div>
+        </section>
+        <section class="section-reviews">
+            <div class="row latest-reviews">
+                <h2>Recent Reviews</h2>
+
+                {% if product.review_set.all %}
+                    <div class="comment-box">
+                        {% for review in product.review_set.all %}
+                            <a href="#">
+                                <div class="comment-body">
+                                    <div class="edit-review">                                
+                                        <ion-icon name="create-outline"></ion-icon>
+                                    </div>
+                                    <div class="delete-review">
+                                        <ion-icon name="trash-outline"></ion-icon>
+                                    </div>
+                                    <div class="product-rating">
+                                        <h4>Rating: <span class="value">{{ review.rating }} of 5 </span></h4>
+                                    </div>
+                                    <div class="mail-content">
+                                        <span class="mail-desc">{{ review.comment }}</span>
+                                        <br>
+                                        <div class="user-details">
+                                            <h5>{{ review.rated_by.username }}</h5>
+                                            <span class="time">{{ review.pub_date }}</span>
+                                        </div>
+                                        <div class="rating-buttons">
+                                            <a href="#"><ion-icon name="thumbs-up-outline" class="upvote"></ion-icon></a>
+                                            <a href="#"><ion-icon name="thumbs-down-outline"  class="downvote"></ion-icon></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                        
+                    </div>
+
+                {% else %}
+                    <p>No reviews for this product yet</p>
+                {% endif %}
+
+
+                    <div >
+                        <div class="row">
+                            <h2>Add Review</h2>
+                        </div>
+                        <form action="{% url 'reviews:add_review' product.id  %}" method="post" class="form">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit">Add</button>
+                        </form>
+                   </div>
+            </div>
+        </section>
+        
+
+</div>
+
+{% endblock %}

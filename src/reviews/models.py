@@ -61,6 +61,9 @@ class Appuser(models.Model):
     mobile = models.CharField(
         validators=[phone_regex], max_length=12, blank=True, null=True)
 
+    def calculate_reviews(self):
+        return self.review_set.count()
+
     def __str__(self):
         return self.user.username
 

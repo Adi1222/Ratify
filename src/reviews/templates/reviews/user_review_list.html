@@ -1,0 +1,58 @@
+{% extends 'reviews/base.html' %}
+{% load static %} 
+{% block title %}Reviews by {{ username }}{% endblock %} 
+
+{% block content %}
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'reviews/userreviews.css' %}"
+    />
+
+    <section class="user-info">
+        
+            <div class="row">
+                <div class="col span-1-of-4">
+                    <div class="user-details">
+                        <h2><ion-icon name="person-circle-outline" class="user-detail-icon"></ion-icon>{{username}}</h2>
+                        <h4><ion-icon name="call-outline" class="user-detail-icon"></ion-icon>{{appuser.mobile}}</h4>
+                        <h4><ion-icon name="mail-outline" class="user-detail-icon"></ion-icon>{{appuser.user.email}}</h4>
+                    </div>
+                </div>
+                <div class="col span-1-of-4">
+                    <div class="additional-details">
+                        <h4>Number of reviews: <span class="product-value">{{appuser.calculate_reviews}}</span></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-bottom"></div>
+        </section>
+
+
+
+
+
+
+
+        {% for review in latest_review_list %}
+            <section class="section-products">
+                <div class="row product-categories">
+                    <div class="product-box">
+                        <img src="{{review.product.pimg.url}}" alt="error" class="product-img">
+                        <div class="product-details">
+                            <h4 class="header-product">Rated : <span class="product-value">{{ review.rating }}of 5</span></h4>
+                            <h2><a href="{% url 'reviews:product_detail' product.id %}">{{review.product.pname}}</a></h2> 
+                                <h4>Description</h4>
+                                <p>{{ review.comment }}</p>
+                        </div>
+                    </div>
+                
+                </div>
+            </section>
+        {% endfor %}
+        
+        
+
+</div>
+{% endblock %}

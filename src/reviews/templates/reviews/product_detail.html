@@ -17,7 +17,11 @@
                     <img src="{{product.pimg.url}}" alt="error" class="product-img">
                 </div>
                 <div class="col span-2-of-3 product-details">
-                    <h2>{{product.pname}}</h2> 
+                    <h2>{{product.pname}} </h2>
+                         <h3 style="float: right;display: inline;">
+                            Reviews: <span class="product-value">{{product.review_set.count}}</span>
+                            Average Rating: <span class="product-value">{{product.average_rating | floatformat}}</span>
+                        </h3> 
                     <h4>Description</h4>
                     <p>{{product.specification}}</p>
                 </div>
@@ -30,16 +34,24 @@
                 {% if product.review_set.all %}
                     <div class="comment-box">
                         {% for review in product.review_set.all %}
-                            <a href="#">
+                            
                                 <div class="comment-body">
-                                    <div class="edit-review">                                
-                                        <ion-icon name="create-outline"></ion-icon>
-                                    </div>
-                                    <div class="delete-review">
-                                        <ion-icon name="trash-outline"></ion-icon>
-                                    </div>
+                                
+
+                                    <a href="#">
+                                        <div class="edit-review">                                
+                                            <ion-icon name="create-outline"></ion-icon>
+                                        </div>
+                                    </a>
+                                    <a href="#">
+                                        <div class="delete-review">
+                                            <ion-icon name="trash-outline"></ion-icon>
+                                        </div>
+                                    </a>
+
+
                                     <div class="product-rating">
-                                        <h4>Rating: <span class="value">{{ review.rating }} of 5 </span></h4>
+                                        <h4>Rated <span class="value">{{ review.rating }} of 5 </span> by <a href="{% url 'reviews:user_review_list' review.rated_by.user.username %}" >{{ review.rated_by.user.username }}</a></h4>
                                     </div>
                                     <div class="mail-content">
                                         <span class="mail-desc">{{ review.comment }}</span>
@@ -54,7 +66,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            
                         {% endfor %}
                         
                     </div>
@@ -68,7 +80,7 @@
                         <div class="row">
                             <h2>Add Review</h2>
                         </div>
-                        <form action="{% url 'reviews:add_review' product.id  %}" method="post" class="form">
+                        <form action="{% url 'reviews:add_review' cid=category.id pid=product.id  %}" method="post" class="form">
                             {% csrf_token %}
                             {{ form.as_p }}
                             <button type="submit">Add</button>

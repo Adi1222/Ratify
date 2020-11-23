@@ -41,12 +41,7 @@
           </li>
         </ul>
         <a class="btn" href="#">
-          <img
-            src="{% static 'reviews/images/sonu.jpg' %}"
-            alt="user"
-            class="img-circle"
-          />
-          <h3>Sonu Nigam</h3>
+          <h3>{{request.user.username}}</h3>
         </a>
       </div>
     </nav>

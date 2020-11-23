@@ -85,6 +85,8 @@ class Review(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     rated_by = models.ForeignKey(Appuser, on_delete=models.CASCADE)
     comment = models.TextField(max_length=300)
+    is_deleted = models.CharField(
+        max_length=1, choices=deleted_choices, default='N')
     rating = models.IntegerField(choices=RATING_CHOICES)
     pub_date = models.DateTimeField('date published')
     upvote = models.IntegerField(

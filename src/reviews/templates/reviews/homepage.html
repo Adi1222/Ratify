@@ -19,7 +19,7 @@
                 <div class="mail-content">
 
                   <div class="product-details">
-                    <h4 class="product-name"><a href="{% url 'reviews:review_detail' review.id %}">{{ review.product.pname }}</a></h4>
+                    <h4 class="product-name"><a href="{% url 'reviews:product_detail' cid=review.category_id pid=review.product_id %}">{{ review.product.pname }}</a></h4>
                     <span class="product-category"> {{ review.category.catname }} </span>
                   </div>
 

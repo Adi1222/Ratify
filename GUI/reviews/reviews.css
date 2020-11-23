@@ -211,6 +211,10 @@ body {
     color: #DD4F43;
 }
 
+.edit-review {
+    color: #2998ff;
+}
+
 .delete-review,
 .edit-review {
     float: right;

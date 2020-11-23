@@ -1,6 +1,6 @@
 from django import forms
 from .models import *
-from django.forms import  Textarea
+from django.forms import Textarea
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -56,11 +56,10 @@ class AddProductForm(forms.ModelForm):
 
 
 class ReviewForm(forms.ModelForm):
-    
+
     class Meta:
         model = Review
         fields = ['rating', 'comment']
         widgets = {
             'comment': Textarea(attrs={'cols': 40, 'rows': 15}),
         }
-

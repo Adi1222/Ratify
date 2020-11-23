@@ -42,9 +42,10 @@
                         <img src="{{review.product.pimg.url}}" alt="error" class="product-img">
                         <div class="product-details">
                             <h4 class="header-product">Rated : <span class="product-value">{{ review.rating }}of 5</span></h4>
-                            <h2><a href="{% url 'reviews:product_detail' product.id %}">{{review.product.pname}}</a></h2> 
-                                <h4>Description</h4>
-                                <p>{{ review.comment }}</p>
+                            <h2><a href="{% url 'reviews:product_detail' cid=review.category_id pid=review.product_id %}">{{review.product.pname}}</a></h2> 
+                                <h4 style="font-size: 2.2rem;">Comment:  <span>{{ review.comment }}</span></h4>
+                                <span class="time">{{ review.pub_date }}</span>
+                                
                         </div>
                     </div>
                 

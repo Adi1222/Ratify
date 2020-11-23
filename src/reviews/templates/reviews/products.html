@@ -7,7 +7,7 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{% static 'reviews/Products/product.css' %}"
+      href="{% static 'reviews/Products/products.css' %}"
     />
 
   <section class="section-products">
@@ -31,7 +31,7 @@
                 Average Rating: <span class="product-value">{{product.average_rating | floatformat}}</span>
             </h4>
             <div class="translate-right">
-            <h2><a href="{% url 'reviews:product_detail' product.id %}">{{product.pname}}</a></h2>
+            <h2><a href="{% url 'reviews:product_detail' cid=category.id pid=product.id %}">{{product.pname}}</a></h2>
             <h4>Description</h4>
             <p>
             {{product.specification}}

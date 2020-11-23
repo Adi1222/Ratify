@@ -3,12 +3,14 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 from django.contrib import messages
 from .forms import UserForm, Appuserform, AddProductForm, ReviewForm
 from django.contrib.auth.models import User
 from .models import *
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
+import datetime
 
 # Create your views here.
 
@@ -22,6 +24,7 @@ def login_request(request):
 
         try:
             u = User.objects.get(username=_username)
+            print(u)
             login(request, u)
             if u is not None:
                 # return HttpResponse("You have successfully signed in !!")
@@ -89,11 +92,11 @@ def user_review_list(request, username=None):
     if not username:
         user = request.user
     else:
-        user = User.objects.filter(username=username)
+        user = User.objects.get(username=username)
 
-    appuser = Appuser.objects.get(user=user)    
-    latest_review_list = Review.objects.filter(rated_by=appuser).order_by('-pub_date')
-
+    appuser = Appuser.objects.get(user=user)
+    latest_review_list = Review.objects.filter(
+        rated_by=appuser, is_deleted='N').order_by('-pub_date')
 
     context = {
         'latest_review_list': latest_review_list,
@@ -160,39 +163,58 @@ def addproduct(request):
 
 
 def products(request, cid):
-    #products = Product.objects.get(category_id=cid)
-    products = get_object_or_404(Product, category_id=cid)
-    category = Category.objects.get(id=cid)
-    return render(request, 'reviews/products.html')
+    products = Product.objects.filter(category_id=cid)
+    category = Category.objects.get(pk=cid)
+    return render(request, 'reviews/products.html', {'products': products, 'category': category})
 
 
 def product_detail(request, cid, pid):
-    product = Product.objects.filter(pk=pid, category_id=cid)
+    product = Product.objects.get(pk=pid, category_id=cid)
+    category = Category.objects.get(id=cid)
     form = ReviewForm()
-    return render(request, 'reviews/product_detail.html', {'product': product, 'form': form})
+    return render(request, 'reviews/product_detail.html', {'product': product, 'form': form, 'category': category})
+
 
 def add_review(request, cid, pid):
-    product = Product.objects.filter(pk=pid, category_id=cid)
-    category = get_object_or_404(Category, pk=cid)
+    product = Product.objects.get(pk=pid, category_id=cid)
+    category = Category.objects.get(pk=cid)
+    appuser = Appuser.objects.get(user=request.user)
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
             rating = form.cleaned_data['rating']
             comment = form.cleaned_data['comment']
-            user_name = form.cleaned_data['user_name']
             review = Review()
             review.product = product
             review.category = category
-            review.rated_by = request.user
+            review.rated_by = appuser
             review.rating = rating
             review.comment = comment
             review.pub_date = datetime.datetime.now()
             review.save()
-            return HttpResponseRedirect(reverse('reviews:`product_detail', args=(product.id,)))
+            return HttpResponseRedirect(reverse('reviews:product_detail', args=(category.id, product.id, )))
 
     form = ReviewForm()
-    return render(request, 'reviews/product_detail.html', {'product': product, 'form': form})
-            
+    return render(request, 'reviews/product_detail.html', {'product': product, 'form': form, 'category': category})
+
+
+def edit_review(request, review_id):
+    review = Review.objects.get(pk=review_id)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=review_id)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = ReviewForm(instance=review_id)
+        return render(request, 'reviews/review_edit.html', {'form': form})
+
+
+def delete_review(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    review.is_deleted = 'Y'
+    review.save()
+    return HttpResponseRedirect(reverse('reviews:user_review_list', args=(request.user.username, )))
 
 
 def logout_request(request):

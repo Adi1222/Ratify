@@ -34,20 +34,25 @@
                 {% if product.review_set.all %}
                     <div class="comment-box">
                         {% for review in product.review_set.all %}
-                            
-                                <div class="comment-body">
-                                
 
-                                    <a href="#">
+                        {% if review.is_deleted == 'N' %}
+                            <div class="comment-body">
+                                
+                                {% if request.user.username == review.rated_by.user.username %}
+
+                                    <a href="{% url 'reviews:edit_review' cid=category.id pid=product.id review_id=review.id %}">
                                         <div class="edit-review">                                
                                             <ion-icon name="create-outline"></ion-icon>
                                         </div>
                                     </a>
-                                    <a href="#">
+                                    <a href="{% url 'reviews:delete_review' cid=category.id pid=product.id review_id=review.id %}">
                                         <div class="delete-review">
                                             <ion-icon name="trash-outline"></ion-icon>
                                         </div>
                                     </a>
+
+                                {% endif %}
+
 
 
                                     <div class="product-rating">
@@ -66,6 +71,8 @@
                                         </div>
                                     </div>
                                 </div>
+                        {% endif %}
+                            
                             
                         {% endfor %}
                         
@@ -76,7 +83,7 @@
                 {% endif %}
 
 
-                    <div >
+                    <div>
                         <div class="row">
                             <h2>Add Review</h2>
                         </div>

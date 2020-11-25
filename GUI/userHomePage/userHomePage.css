@@ -252,3 +252,18 @@ body {
     transition: 0.2s all;
 }
 
+.delete-review {
+    margin-right: 1rem;
+    color: #DD4F43;
+}
+
+.edit-review {
+    color: #2998ff;
+}
+
+.delete-review,
+.edit-review {
+    float: right;
+    font-size: 2rem;
+}
+

@@ -40,7 +40,10 @@
             <a href="{% url 'reviews:addproduct' %}">Add Product</a>
           </li>
         </ul>
-        <a class="btn" href="#">
+        <a
+          class="btn"
+          href="{% url 'reviews:user_review_list' request.user.username %}"
+        >
           <h3>{{request.user.username}}</h3>
         </a>
       </div>

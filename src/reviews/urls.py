@@ -27,10 +27,10 @@ urlpatterns = [
     path('review/user/<username>/',
          views.user_review_list, name='user_review_list'),
 
-    path('review/delete/<int:review_id>/',
+    path('category/<int:cid>/<int:pid>/delete/<int:review_id>/',
          views.delete_review, name='delete_review'),
 
-    path('review/Edit/<int:review_id>/',
+    path('category/<int:cid>/<int:pid>/Edit/<int:review_id>/',
          views.edit_review, name='edit_review'),
 
 

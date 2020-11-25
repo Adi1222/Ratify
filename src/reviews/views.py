@@ -98,7 +98,10 @@ def user_review_list(request, username=None):
     latest_review_list = Review.objects.filter(
         rated_by=appuser, is_deleted='N').order_by('-pub_date')
 
+    nop = Product.objects.filter(created_by=username).count()
+
     context = {
+        'nop': nop,
         'latest_review_list': latest_review_list,
         'username': user.username,
         'appuser': appuser
@@ -198,23 +201,25 @@ def add_review(request, cid, pid):
     return render(request, 'reviews/product_detail.html', {'product': product, 'form': form, 'category': category})
 
 
-def edit_review(request, review_id):
+def edit_review(request, cid, pid, review_id):
+    product = Product.objects.get(pk=pid, category_id=cid)
+    category = Category.objects.get(pk=cid)
     review = Review.objects.get(pk=review_id)
     if request.method == 'POST':
-        form = ReviewForm(request.POST, instance=review_id)
+        form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return HttpResponseRedirect(reverse('reviews:product_detail', args=(category.id, product.id, )))
     else:
-        form = ReviewForm(instance=review_id)
-        return render(request, 'reviews/review_edit.html', {'form': form})
+        form = ReviewForm(instance=review)
+        return render(request, 'reviews/review_edit.html', {'form': form, 'category': category, 'product': product, 'review': review})
 
 
-def delete_review(request, review_id):
+def delete_review(request, cid, pid, review_id):
     review = get_object_or_404(Review, pk=review_id)
     review.is_deleted = 'Y'
     review.save()
-    return HttpResponseRedirect(reverse('reviews:user_review_list', args=(request.user.username, )))
+    return HttpResponseRedirect(reverse('reviews:product_detail', args=(cid, pid, )))
 
 
 def logout_request(request):

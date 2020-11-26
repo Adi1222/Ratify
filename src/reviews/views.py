@@ -23,7 +23,7 @@ def login_request(request):
         print(_password)
 
         try:
-            u = User.objects.get(username=_username)
+            u = User.objects.get(username=_username, password=_password)
             print(u)
             login(request, u)
             if u is not None:

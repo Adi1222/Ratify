@@ -105,7 +105,8 @@ body {
 }
 
 .product-img {
-  height: 25rem;
+  /*height: 25rem;*/
+  width: 25rem;
   float: left;
   margin-left: 5rem;
 }
@@ -118,6 +119,7 @@ body {
 .product-details h2 {
   text-decoration: none;
   color: #000;
+  display: inline-block;
 }
 
 .product-details h4 {
@@ -143,7 +145,7 @@ body {
   font-size: 2.5rem;
 }
 
-.latest-reviews {
+.reviews {
   width: 100%;
 }
 
@@ -155,7 +157,7 @@ body {
 /*------------------------Form----------------------------*/
 
 .form {
-  position: absolute;
+  /*position: absolute;*/
   bottom: -47rem;
   margin-bottom: 5rem;
   width: 100%;
@@ -210,21 +212,20 @@ body {
 
 .delete-review {
   margin-right: 1rem;
-  color: #dd4f43;
-}
-
-.edit-review {
-  color: #2998ff;
-}
-
-.delete-review {
-  color: red;
 }
 
 .delete-review,
 .edit-review {
   float: right;
   font-size: 2rem;
+}
+
+.delete-review:hover {
+  color: #dd4f43;
+}
+
+.edit-review:hover {
+  color: #2998ff;
 }
 
 .product-rating .value {

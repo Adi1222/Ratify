@@ -9,6 +9,13 @@
       type="text/css"
       href="{% static 'reviews/ProductDetail/productdetail.css' %}"
     />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'reviews/categories/Grid.css' %}"
+    />
+
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 
      <section class="section-product-info">
@@ -18,17 +25,18 @@
                 </div>
                 <div class="col span-2-of-3 product-details">
                     <h2>{{product.pname}} </h2>
-                         <h3 style="float: right;display: inline;">
-                            Reviews: <span class="product-value">{{product.review_set.count}}</span>
+                         <h3 style="float: right;display: inline; color: black;">
+                            Reviews: <span class="product-value">{{product.review_set.count}}</span><br>
                             Average Rating: <span class="product-value">{{product.average_rating | floatformat}}</span>
                         </h3> 
-                    <h4>Description</h4>
+                    <h4>Price: <span class="product-value">{{product.price | floatformat}}</span> Rs</h4>
+                    <h4>Description:</h4>
                     <p>{{product.specification}}</p>
                 </div>
             </div>
         </section>
         <section class="section-reviews">
-            <div class="row latest-reviews">
+            <div class="row reviews">
                 <h2>Recent Reviews</h2>
 
                 {% if product.review_set.all %}
@@ -65,10 +73,10 @@
                                             <h5>{{ review.rated_by.username }}</h5>
                                             <span class="time">{{ review.pub_date }}</span>
                                         </div>
-                                        <div class="rating-buttons">
+                                        <!--<div class="rating-buttons">
                                             <a href="#"><ion-icon name="thumbs-up-outline" class="upvote"></ion-icon></a>
                                             <a href="#"><ion-icon name="thumbs-down-outline"  class="downvote"></ion-icon></a>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                         {% endif %}

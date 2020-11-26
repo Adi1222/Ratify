@@ -27,21 +27,21 @@
                   <br />
 
                   <div class="user-details">
-                    <div class="user-img">
+                    <!--<div class="user-img">
                       <img src="{% static 'reviews/images/sonu.jpg' %}" alt="user" class="img-circle" />
-                    </div>
+                    </div>-->
                     <h5><a href="{% url 'reviews:user_review_list' review.rated_by.user.username %}" >{{ review.rated_by.user.username }}</a></h5>
                     <span class="time">{{ review.pub_date }}</span>
                   </div>
 
-                  <div class="rating-buttons">
+                  <!--<div class="rating-buttons">
                     <a href="#" class="upvote"
                       ><ion-icon name="thumbs-up-outline"></ion-icon
                     ></a>
                     <a href="#" class="downvote"
                       ><ion-icon name="thumbs-down-outline"></ion-icon
                     ></a>
-                  </div>
+                  </div>-->
 
                 </div>
             </div>

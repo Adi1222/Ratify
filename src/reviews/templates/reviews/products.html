@@ -27,10 +27,10 @@
             />
             <div class="product-details">
             <h4 class="header-product">
-                Reviews: <span class="product-value">{{product.review_set.count}}</span>
+                Reviews: <span class="product-value">{{product.review_set.count}}</span><br>
                 Average Rating: <span class="product-value">{{product.average_rating | floatformat}}</span>
             </h4>
-            <div class="translate-right">
+            <div>
             <h2><a href="{% url 'reviews:product_detail' cid=category.id pid=product.id %}">{{product.pname}}</a></h2>
             <h4>Description</h4>
             <p>

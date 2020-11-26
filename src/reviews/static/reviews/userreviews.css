@@ -151,8 +151,9 @@ body {
 }
 
 .additional-details {
-  margin-right: 1.5rem;
   padding-top: 2rem;
+  text-align: right;
+  margin-right: 1.5rem;
 }
 
 .additional-details h4 {

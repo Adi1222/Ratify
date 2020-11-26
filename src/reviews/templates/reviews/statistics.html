@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+
+        <!--Keep both css files-->>
+        <link rel="stylesheet" href="../../static/reviews/categories/Grid.css">
+        <link rel="stylesheet" href="../../static/reviews/statistics/statistics.css">
+
+        <title>Statistics</title>
+    </head>
+    <body>
+        <nav>
+            <div class="row__main-nav clearfix">
+                <ul class="main-nav">
+                    <li>
+                        <a href="{% url 'reviews:homepage' %}">Ratify</a>
+                        <a href="{% url 'reviews:categories' %}">Categories</a>
+                        <a href="#">Statistics</a>
+                        <a href="{% url 'reviews:addproduct' %}">Add Product</a>
+                        <a href="{% url 'reviews:logout_request' %}">Logout</a>
+                    </li>
+                </ul>
+                <a class="btn" href="../userHomePage/userHomePage.html">
+                    <h3>Sonu Nigam</h3>
+                </a>
+            </div>
+        </nav>
+        <section class="register-page">
+            <div class="row">
+                <div class="form">
+                    <form class="register-form">
+                        <div class="row">
+                            <div class="col span-1-of-3">
+                                <select name="category" title="Categories">
+                                    <option value="select">Category</option>
+                                    <option value="washing-machine">Washing Machine</option>
+                                    <option value="smartphone">Smartphone</option>
+                                </select>
+                            </div>
+                            <div class="col span-1-of-3">
+                                <select name="product" title="Products">
+                                    <option value="select">Products</option>
+                                    <option value="washing-machine">Product 1</option>
+                                    <option value="smartphone">Product 2</option>
+                                </select>
+                            </div>
+                            <div class="col span-1-of-3">
+                                <button>create</button>
+                            </div>
+                        </div>
+                        <div class="row chart-space"></div>
+                    </form>
+                </div>
+            </div>
+          </div>
+        </section>
+    </body>
+</html>

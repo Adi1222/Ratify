@@ -14,37 +14,40 @@
 
       {% if latest_review_list %}
           {% for review in latest_review_list %}
-              <div class="comment-body">
+              {% if review.is_deleted == 'N' %}
+                    <div class="comment-body">
 
-                <div class="mail-content">
+                    <div class="mail-content">
 
-                  <div class="product-details">
-                    <h4 class="product-name"><a href="{% url 'reviews:product_detail' cid=review.category_id pid=review.product_id %}">{{ review.product.pname }}</a></h4>
-                    <span class="product-category"> {{ review.category.catname }} </span>
-                  </div>
+                      <div class="product-details">
+                        <h4 class="product-name"><a href="{% url 'reviews:product_detail' cid=review.category_id pid=review.product_id %}">{{ review.product.pname }}</a></h4>
+                        <span class="product-category"> {{ review.category.catname }} </span>
+                      </div>
 
-                  <span class="mail-desc">{{ review.comment }}</span>
-                  <br />
+                      <span class="mail-desc">{{ review.comment }}</span>
+                      <br />
 
-                  <div class="user-details">
-                    <!--<div class="user-img">
-                      <img src="{% static 'reviews/images/sonu.jpg' %}" alt="user" class="img-circle" />
-                    </div>-->
-                    <h5><a href="{% url 'reviews:user_review_list' review.rated_by.user.username %}" >{{ review.rated_by.user.username }}</a></h5>
-                    <span class="time">{{ review.pub_date }}</span>
-                  </div>
+                      <div class="user-details">
+                        <!--<div class="user-img">
+                          <img src="{% static 'reviews/images/sonu.jpg' %}" alt="user" class="img-circle" />
+                        </div>-->
+                        <h5><a href="{% url 'reviews:user_review_list' review.rated_by.user.username %}" >{{ review.rated_by.user.username }}</a></h5>
+                        <span class="time">{{ review.pub_date }}</span>
+                      </div>
 
-                  <!--<div class="rating-buttons">
-                    <a href="#" class="upvote"
-                      ><ion-icon name="thumbs-up-outline"></ion-icon
-                    ></a>
-                    <a href="#" class="downvote"
-                      ><ion-icon name="thumbs-down-outline"></ion-icon
-                    ></a>
-                  </div>-->
+                      <!--<div class="rating-buttons">
+                        <a href="#" class="upvote"
+                          ><ion-icon name="thumbs-up-outline"></ion-icon
+                        ></a>
+                        <a href="#" class="downvote"
+                          ><ion-icon name="thumbs-down-outline"></ion-icon
+                        ></a>
+                      </div>-->
 
+                    </div>
                 </div>
-            </div>
+               {% endif %}
+
 
           {% endfor %}
       {% else %}

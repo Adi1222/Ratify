@@ -23,8 +23,8 @@ def login_request(request):
         print(_password)
 
         try:
+            print("df")
             u = User.objects.get(username=_username)
-            print(u)
             login(request, u)
             if u is not None:
                 # return HttpResponse("You have successfully signed in !!")
@@ -74,10 +74,9 @@ def homepage(request):
     top_products = []
     allproducts = Product.objects.all()
 
-    '''if allproducts != None:
-        for product in Product.objects.all():
-            if product.average_rating >= 3 and product.total_rating > 10:
-                top_products.push(product)'''
+    for p in Product.objects.all():
+        if p.average_rating() >= 3:
+            top_products.append(p)
 
     return render(request, 'reviews/homepage.html', {'latest_review_list': latest_review_list, 'top_products': top_products})
 

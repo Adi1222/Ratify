@@ -83,9 +83,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ratify',
         'USER': 'root',
-        'PASSWORD': 'root1',
-        'HOST': '127.0.0.1',
-        'PORT': '3307',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '3306',
         'OPTIONS': {
             'autocommit': True,
         }
@@ -132,4 +132,4 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'src/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'ratify/media')

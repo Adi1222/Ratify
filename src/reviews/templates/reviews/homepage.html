@@ -11,124 +11,75 @@
   <div class="row latest-reviews">
     <h3>Latest Reviews</h3>
     <div class="comment-box">
-      <div class="comment-body">
-        <div class="mail-content">
-          <div class="product-details">
-            <h4 class="product-name">Samsung Note 10</h4>
-            <span class="product-category"> Smartphones </span>
-          </div>
-          <span class="mail-desc"
-            >Donec ac condimentum massa. Etiam pellentesque pretium lacus.
-            Phasellus ultricies dictum suscipit. Aenean commodo dui pellentesque
-            molestie feugiat. Aenean commodo dui pellentesque molestie
-            feugiat</span
-          >
-          <br />
-          <div class="user-details">
-            <div class="user-img">
-              <img src="{% static 'reviews/images/sonu.jpg' %}" alt="user" class="img-circle" />
+
+      {% if latest_review_list %}
+          {% for review in latest_review_list %}
+              <div class="comment-body">
+
+                <div class="mail-content">
+
+                  <div class="product-details">
+                    <h4 class="product-name"><a href="{% url 'reviews:product_detail' cid=review.category_id pid=review.product_id %}">{{ review.product.pname }}</a></h4>
+                    <span class="product-category"> {{ review.category.catname }} </span>
+                  </div>
+
+                  <span class="mail-desc">{{ review.comment }}</span>
+                  <br />
+
+                  <div class="user-details">
+                    <!--<div class="user-img">
+                      <img src="{% static 'reviews/images/sonu.jpg' %}" alt="user" class="img-circle" />
+                    </div>-->
+                    <h5><a href="{% url 'reviews:user_review_list' review.rated_by.user.username %}" >{{ review.rated_by.user.username }}</a></h5>
+                    <span class="time">{{ review.pub_date }}</span>
+                  </div>
+
+                  <!--<div class="rating-buttons">
+                    <a href="#" class="upvote"
+                      ><ion-icon name="thumbs-up-outline"></ion-icon
+                    ></a>
+                    <a href="#" class="downvote"
+                      ><ion-icon name="thumbs-down-outline"></ion-icon
+                    ></a>
+                  </div>-->
+
+                </div>
             </div>
-            <h5>Sonu Nigam</h5>
-            <span class="time">10:20 AM 20 may 2016</span>
-          </div>
-          <div class="rating-buttons">
-            <a href="#" class="upvote"
-              ><ion-icon name="thumbs-up-outline"></ion-icon
-            ></a>
-            <a href="#" class="downvote"
-              ><ion-icon name="thumbs-down-outline"></ion-icon
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="comment-body">
-        <div class="product-details">
-          <h4 class="product-name">Samsung Odyssey G9</h4>
-          <span class="product-category"> TV </span>
-        </div>
-        <div class="mail-content">
-          <span class="mail-desc"
-            >Donec ac condimentum massa. Etiam pellentesque pretium lacus.
-            Phasellus ultricies dictum suscipit. Aenean commodo dui pellentesque
-            molestie feugiat. Aenean commodo dui pellentesque molestie
-            feugiat</span
-          >
-          <br />
-          <div class="user-details">
-            <div class="user-img">
-              <img src="{% static 'reviews/images/ritesh.jpg' %}" alt="user" class="img-circle" />
-            </div>
-            <h5>Ritesh deshmukh</h5>
-            <span class="time">10:20 AM 20 may 2016</span>
-          </div>
-          <div class="rating-buttons">
-            <a href="#" class="upvote"
-              ><ion-icon name="thumbs-up-outline"></ion-icon
-            ></a>
-            <a href="#" class="downvote"
-              ><ion-icon name="thumbs-down-outline"></ion-icon
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="comment-body">
-        <div class="product-details">
-          <h4 class="product-name">LG G5809</h4>
-          <span class="product-category"> Washing machines </span>
-        </div>
-        <div class="mail-content">
-          <span class="mail-desc"
-            >Donec ac condimentum massa. Etiam pellentesque pretium lacus.
-            Phasellus ultricies dictum suscipit. Aenean commodo dui pellentesque
-            molestie feugiat. Aenean commodo dui pellentesque molestie
-            feugiat</span
-          >
-          <br />
-          <div class="user-details">
-            <div class="user-img">
-              <img src="{% static 'reviews/images/varun.jpg' %}" alt="user" class="img-circle" />
-            </div>
-            <h5>Varun dhawan</h5>
-            <span class="time">10:20 AM 20 may 2016</span>
-          </div>
-          <div class="rating-buttons">
-            <a href="#" class="upvote"
-              ><ion-icon name="thumbs-up-outline"></ion-icon
-            ></a>
-            <a href="#" class="downvote"
-              ><ion-icon name="thumbs-down-outline"></ion-icon
-            ></a>
-          </div>
-        </div>
-      </div>
+
+          {% endfor %}
+      {% else %}
+        <p>No reviews are available.</p>
+      {% endif %}
+      
+
+
+
     </div>
   </div>
+
+
+
+
   <div class="row panel-top-picks">
     <h3>Top Picks</h3>
-    <div class="top-pick-item">
-      <div class="upvote-count">
-        <ion-icon name="thumbs-up-outline"></ion-icon>
-        <span class="upvote-value">512</span>
-      </div>
-      <h4 class="product-name">LG G5809</h4>
-      <span class="product-category"> Washing machines </span>
-    </div>
-    <div class="top-pick-item">
-      <div class="upvote-count">
-        <ion-icon name="thumbs-up-outline"></ion-icon>
-        <span class="upvote-value">475</span>
-      </div>
-      <h4 class="product-name">Samsung Odyssey G9</h4>
-      <span class="product-category"> TV </span>
-    </div>
-    <div class="top-pick-item">
-      <div class="upvote-count">
-        <ion-icon name="thumbs-up-outline"></ion-icon>
-        <span class="upvote-value">388</span>
-      </div>
-      <h4 class="product-name">Samsung Note 10</h4>
-      <span class="product-category"> Smartphones </span>
-    </div>
+
+    {% if top_products %}
+      {% for product in top_products %}
+        <div class="top-pick-item">
+            <div class="upvote-count">
+              <ion-icon name="thumbs-up-outline"></ion-icon>
+              <span class="upvote-value">{{product.total_rating}}</span>
+            </div>
+            <h4 class="product-name">{{product.pname}}</h4>
+            <span class="product-category">{{product.category.catname}}</span>
+        </div>
+      {% endfor %}
+    {%  else %}
+      <p>No Top Picks are available.</p>
+    {% endif %}
+
+
+
   </div>
 </section>
 </div>

@@ -8,7 +8,7 @@ deleted_choices = [('N', 'No'), ('Y', 'Yes')]
 
 class Category(models.Model):
     catname = models.CharField(unique=True, blank=False, max_length=100)
-    catimg = models.ImageField(upload_to='cat_img', blank=True, null=True)
+    # catimg = models.ImageField(upload_to='cat_img', blank=True, null=True)
 
     def calculate_products(self):
         return self.product_set.count()
@@ -27,10 +27,12 @@ class Product(models.Model):
     price = models.IntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_by = models.CharField(max_length=25)
+    website = models.CharField(max_length=25, null=True)
     is_deleted = models.CharField(
         max_length=1, choices=deleted_choices, default='N')
     created_on = models.DateTimeField(auto_now_add=True, blank=True)
     modified_on = models.DateTimeField(auto_now=True, blank=True, null=True)
+    specification = models.TextField(max_length=200, null=True)
     pimg = models.ImageField(upload_to='prod_img', blank=True, null=True)
 
     def average_rating(self):
@@ -59,6 +61,9 @@ class Appuser(models.Model):
     mobile = models.CharField(
         validators=[phone_regex], max_length=12, blank=True, null=True)
 
+    def calculate_reviews(self):
+        return self.review_set.count()
+
     def __str__(self):
         return self.user.username
 
@@ -80,6 +85,8 @@ class Review(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     rated_by = models.ForeignKey(Appuser, on_delete=models.CASCADE)
     comment = models.TextField(max_length=300)
+    is_deleted = models.CharField(
+        max_length=1, choices=deleted_choices, default='N')
     rating = models.IntegerField(choices=RATING_CHOICES)
     pub_date = models.DateTimeField('date published')
     upvote = models.IntegerField(

@@ -1,0 +1,110 @@
+{% extends 'reviews/base.html' %}
+{% load static %} 
+{% block title %}Product Detail{%endblock %} 
+
+{% block content %}
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'reviews/ProductDetail/productdetail.css' %}"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'reviews/categories/Grid.css' %}"
+    />
+
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+
+     <section class="section-product-info">
+            <div class="row">
+                <div class="col span-1-of-3">
+                    <img src="{{product.pimg.url}}" alt="error" class="product-img">
+                </div>
+                <div class="col span-2-of-3 product-details">
+                    <h2>{{product.pname}} </h2>
+                         <h3 style="float: right;display: inline; color: black;">
+                            Reviews: <span class="product-value">{{product.review_set.count}}</span><br>
+                            Average Rating: <span class="product-value">{{product.average_rating | floatformat}}</span>
+                        </h3> 
+                    <h4>Price: <span class="product-value">{{product.price | floatformat}}</span> Rs</h4>
+                    <h4>Description:</h4>
+                    <p>{{product.specification}}</p>
+                </div>
+            </div>
+        </section>
+        <section class="section-reviews">
+            <div class="row reviews">
+                <h2>Recent Reviews</h2>
+
+                {% if product.review_set.all %}
+                    <div class="comment-box">
+                        {% for review in product.review_set.all %}
+
+                        {% if review.is_deleted == 'N' %}
+                            <div class="comment-body">
+                                
+                                {% if request.user.username == review.rated_by.user.username %}
+
+                                    <a href="{% url 'reviews:edit_review' cid=category.id pid=product.id review_id=review.id %}">
+                                        <div class="edit-review">                                
+                                            <ion-icon name="create-outline"></ion-icon>
+                                        </div>
+                                    </a>
+                                    <a href="{% url 'reviews:delete_review' cid=category.id pid=product.id review_id=review.id %}">
+                                        <div class="delete-review">
+                                            <ion-icon name="trash-outline"></ion-icon>
+                                        </div>
+                                    </a>
+
+                                {% endif %}
+
+
+
+                                    <div class="product-rating">
+                                        <h4>Rated <span class="value">{{ review.rating }} of 5 </span> by <a href="{% url 'reviews:user_review_list' review.rated_by.user.username %}" >{{ review.rated_by.user.username }}</a></h4>
+                                    </div>
+                                    <div class="mail-content">
+                                        <span class="mail-desc">{{ review.comment }}</span>
+                                        <br>
+                                        <div class="user-details">
+                                            <h5>{{ review.rated_by.username }}</h5>
+                                            <span class="time">{{ review.pub_date }}</span>
+                                        </div>
+                                        <!--<div class="rating-buttons">
+                                            <a href="#"><ion-icon name="thumbs-up-outline" class="upvote"></ion-icon></a>
+                                            <a href="#"><ion-icon name="thumbs-down-outline"  class="downvote"></ion-icon></a>
+                                        </div>-->
+                                    </div>
+                                </div>
+                        {% endif %}
+                            
+                            
+                        {% endfor %}
+                        
+                    </div>
+
+                {% else %}
+                    <p>No reviews for this product yet</p>
+                {% endif %}
+
+
+                    <div>
+                        <div class="row">
+                            <h2>Add Review</h2>
+                        </div>
+                        <form action="{% url 'reviews:add_review' cid=category.id pid=product.id  %}" method="post" class="form">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit">Add</button>
+                        </form>
+                   </div>
+            </div>
+        </section>
+        
+
+</div>
+
+{% endblock %}

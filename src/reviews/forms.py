@@ -1,5 +1,6 @@
 from django import forms
 from .models import *
+from django.forms import Textarea
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -45,3 +46,20 @@ class Appuserform(forms.ModelForm):
     class Meta:
         model = Appuser
         fields = ['mobile']
+
+
+class AddProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['pimg', 'pname', 'company', 'price',
+                  'category', 'website', 'specification']
+
+
+class ReviewForm(forms.ModelForm):
+
+    class Meta:
+        model = Review
+        fields = ['rating', 'comment']
+        widgets = {
+            'comment': Textarea(attrs={'cols': 40, 'rows': 15}),
+        }

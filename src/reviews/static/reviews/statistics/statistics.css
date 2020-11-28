@@ -1,0 +1,145 @@
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+/*                                                          Basic Setup                                                                        */
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%; 
+}
+  
+body {
+    box-sizing: border-box; 
+    font-family: "Lato", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #777;
+}
+
+.row {
+    margin: 0 auto;
+    max-width: 1140px;
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+/*                                                                  Navigation                                                                 */
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.row__main-nav {
+    /*background-image: linear-gradient(to right, #2998ff, #5643fa);*/
+    background-color: rgba(0,0,0);
+    max-width: vw;
+}
+
+.main-nav {
+    float: left;
+    list-style: none;
+    margin: 0.65rem 0; 
+}
+
+.main-nav li {
+    display: inline-block;
+    margin-left: 4rem;
+    padding: 1rem;
+}
+
+.main-nav li a {
+    text-decoration: none;
+    margin-right: 2rem;
+    font-size: 2.5rem;
+    color: #fff;
+}
+
+.main-nav li a:first-child {
+    color: #2998ff; 
+}
+
+.clearfix {zoom: 1}
+.clearfix:after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.btn {
+    margin-top: 1rem;
+    margin-right: 2rem;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    text-decoration: none;
+    float: right;
+    color: white;
+    background-color: rgba(0,0,0);
+}
+
+.btn img {
+    border-radius: 50%;
+    display: inline; 
+    float: left;
+    width: 4rem;
+    margin-right: 1rem;
+}
+
+.btn h3 {
+    display: inline; 
+    float: left;
+    padding: 0.7rem 0 0 0;
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+/*                                                                  Form                                                                 */
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 114rem;
+    margin: 2rem auto;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input,
+.form select {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #2998ff;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+
+.form select:hover {
+    cursor: pointer;
+}
+
+.form button:hover,.form button:active,.form button:focus {
+    background: #2998ff;
+}
+

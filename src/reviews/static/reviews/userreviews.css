@@ -1,0 +1,271 @@
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+/*                                                          Basic Setup                                                                        */
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #777;
+}
+
+.row {
+  margin: 0 auto;
+  max-width: 1140px;
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+/*                                                                  Navigation                                                                 */
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.row__main-nav {
+  /*background-image: linear-gradient(to right, #2998ff, #5643fa);*/
+  background-color: rgba(0, 0, 0);
+  max-width: vw;
+}
+
+.main-nav {
+  float: left;
+  list-style: none;
+  margin: 0.65rem 0;
+}
+
+.main-nav li {
+  display: inline-block;
+  margin-left: 4rem;
+  padding: 1rem;
+}
+
+.main-nav li a {
+  text-decoration: none;
+  margin-right: 2rem;
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+.main-nav li a:first-child {
+  color: #2998ff;
+}
+
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  content: ".";
+  clear: both;
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+.btn {
+  margin-top: 1rem;
+  margin-right: 2rem;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  text-decoration: none;
+  float: right;
+  color: white;
+  background-color: rgba(0, 0, 0);
+}
+
+.btn img {
+  border-radius: 50%;
+  display: inline;
+  float: left;
+  width: 4rem;
+  margin-right: 1rem;
+}
+
+.btn h3 {
+  display: inline;
+  float: left;
+  padding: 0.7rem 0 0 0;
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+/*                                                                    User Details                                                                 */
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.user-header {
+  margin: 2rem;
+  font-size: 3.2rem;
+  color: black;
+}
+
+.col {
+  color: #000;
+  text-align: center;
+  border-right: 1px solid #777;
+  height: 15rem;
+}
+
+.col:last-child {
+  border: none;
+}
+
+.user-info {
+  padding: 5rem 2rem;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  width: 50%;
+  margin-left: 2rem;
+}
+
+.col .user-details {
+  padding-top: 3rem;
+  text-align: start;
+  line-height: 120%;
+  vertical-align: middle;
+  margin-top: -5px;
+  margin-left: 1.5rem;
+}
+
+.col .user-details h2 {
+  margin-bottom: 2rem;
+}
+
+.col .user-details h4 {
+  margin-bottom: 1rem;
+}
+
+.col .user-details .user-detail-icon {
+  margin-right: 1rem;
+  float: left;
+  margin: 0.2rem 2rem;
+}
+
+.additional-details {
+  padding-top: 2rem;
+  text-align: right;
+  margin-right: 1.5rem;
+}
+
+.additional-details h4 {
+  margin-bottom: 1rem;
+}
+
+.edit-btn {
+  width: 75%;
+  margin-top: 4rem;
+  padding: 1rem 0;
+  background-color: #fff;
+  color: #2998ff;
+  font-size: 2rem;
+  cursor: pointer;
+  border: none;
+}
+
+.edit-btn:hover {
+  background-color: #2998ff;
+  color: #fff;
+  border: none;
+  transition: 0.2s all;
+}
+
+.border-bottom {
+  margin-top: 3rem;
+  margin-bottom: -3rem;
+  border-bottom: 1px solid #777;
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+/*                                                                    Products                                                                 */
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.product-header {
+  margin: 2rem;
+  font-size: 3.2rem;
+  color: black;
+}
+
+.product-categories:first-of-type {
+  margin-top: 2rem;
+}
+
+.product-box {
+  padding: 1rem 1rem 0rem 1rem;
+  height: 30rem;
+  border-bottom: 1px solid #000;
+}
+
+.product-box:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.product-img {
+  height: 25rem;
+  float: left;
+}
+
+.product-details {
+  margin-left: 25rem;
+}
+
+.product-details h2 {
+  display: inline-block;
+}
+
+.product-details h2 a {
+  text-decoration: none;
+  color: #000;
+}
+
+.product-details h2 a:hover {
+  text-decoration: none;
+  color: #2998ff;
+}
+
+.product-details h4 {
+  font-size: 105%;
+  color: #000;
+}
+
+.header-product {
+  float: right;
+  display: inline;
+}
+
+.product-value {
+  color: #2998ff;
+}
+
+.product-specs {
+  margin-left: 5rem;
+  color: #000;
+}
+
+.translate-right:hover {
+  transform: translateX(1rem);
+  transition: 0.2s all;
+}
+
+.delete-review {
+  margin-right: 1rem;
+  color: #dd4f43;
+}
+
+.edit-review {
+  color: #2998ff;
+}
+
+.delete-review,
+.edit-review {
+  float: right;
+  font-size: 2rem;
+}

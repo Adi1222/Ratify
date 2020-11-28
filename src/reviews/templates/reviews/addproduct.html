@@ -1,0 +1,53 @@
+{% extends 'reviews/base.html' %} 
+{% load static %}
+
+{% block title %}Add Product{% endblock %} 
+
+{% block content %}
+
+
+
+        <link rel="stylesheet" type="text/css" href="{% static 'reviews/categories/Grid.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'reviews/addProduct/addProduct.css' %}">
+
+        <section class="register-page">
+            <div class="form">
+              <form class="register-form" action="{% url 'reviews:addproduct' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+          
+                    <div>
+                    
+                
+                  
+                  {{pform.as_p }}
+                  <!--<input type="file" name="pimg" onchange="previewFile()">-->
+
+                </div>
+                <!--<div class="col span-1-of-2">
+                  <input type="text" name="pname" placeholder="Product name" required />
+                    <input type="text" name="company" placeholder="Company" required />
+                    <input type="text" name="website" placeholder="website" required />
+                    <select id="category" name="category" title="Categories" required>
+                            <option selected>--select--</option>
+                                {% for category in categories %}
+                                    <option>{{category.catname}}</option>
+                                {% endfor %}
+                    </select>
+                    <input type="text" name="price" placeholder="Price"required />
+                    <textarea  name="speci" placeholder="Specifications" required></textarea>
+                </div>-->
+                <button type="submit">create</button>
+                </div>
+                
+              </form>
+            </div>
+          </div>
+           <script src="{% static 'reviews/addProduct/addProduct.js' %}"></script>
+        </section>
+    
+
+
+{% endblock %}
+
+
+        

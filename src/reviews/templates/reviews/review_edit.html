@@ -1,0 +1,30 @@
+{% extends 'reviews/base.html' %} 
+{% load static %}
+
+{% block title %}Edit{% endblock %} 
+
+
+ 
+{% block content %}
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'reviews/editreviewform.css' %}"
+    />
+
+                    <div class="row">
+                        <div class="row">
+                            <h2>Edit Review</h2>
+                        </div>
+                        <form action="{% url 'reviews:edit_review' cid=category.id pid=product.id review_id=review.id  %}" method="post" class="form">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit">Edit</button>
+                        </form>
+                   </div>
+
+
+</div>
+
+{% endblock %}

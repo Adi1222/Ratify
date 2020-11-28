@@ -74,9 +74,9 @@ def homepage(request):
     top_products = []
     allproducts = Product.objects.all()
 
-    for p in Product.objects.all():
-        if p.average_rating() >= 3:
-            top_products.append(p)
+    for prod in Product.objects.all():
+        if prod.average_rating() >= 3:
+            top_products.append(prod)
 
     return render(request, 'reviews/homepage.html', {'latest_review_list': latest_review_list, 'top_products': top_products})
 

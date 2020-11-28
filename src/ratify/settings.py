@@ -82,10 +82,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ratify',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+        'USER': 'root',
+        'PASSWORD': 'root1',
+        'HOST': '127.0.0.1',
+        'PORT': '3307',
         'OPTIONS': {
             'autocommit': True,
         }

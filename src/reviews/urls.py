@@ -12,6 +12,13 @@ urlpatterns = [
 
     path('categories/', views.categories, name='categories'),
 
+    path('statistics/', views.statistics, name='statistics'),
+
+    path('statistics/products/', views.get_products, name='get_products'),
+
+    path('statistics/get_statistics_data',
+         views.get_statistics_data, name='get_statistics_data'),
+
     path('addproduct/', views.addproduct, name='addproduct'),
 
     path('category/<int:cid>/', views.products, name='products'),

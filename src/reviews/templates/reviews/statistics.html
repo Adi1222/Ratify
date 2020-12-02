@@ -1,0 +1,157 @@
+{% extends 'reviews/base.html' %} 
+{% load static %}
+
+{% block title %}Statistics{% endblock %} 
+
+
+
+{% block content %}
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+        <link rel="stylesheet" type="text/css"  href="{% static 'reviews/categories/Grid.css' %}">
+
+            <link rel="stylesheet" type="text/css" href="{% static 'reviews/statistics.css' %}" />
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(()=>{
+
+        var cat;
+    
+
+        $("select#category").change(function(){
+            var category_id = $(this).val();
+            var categoryvalue = $('#category :selected').text();
+            console.log(category_id);
+            console.log(categoryvalue);
+
+            cat = category_id;
+
+            /*$('#product').prop("hidden", false);
+
+            var opt = "";
+            fetchProducts(category_id);
+
+            $("select#product").html('<option selected>--select--</option>');
+
+            function fetchProducts(category_id){
+                $.ajax({
+                    url:'{% url 'reviews:get_products' %}',
+                    type: 'POST',
+                    data:{category_id:category_id},
+                })
+                .done(function(response){
+                    for(key in response){
+                        console.log(response[key]['fields']['pname']);
+
+                        opt = "<option value='" + response[key]['pk'] + "'>" + response[key]['fields']['pname'] +"</option>";
+                        $("select#product").append(opt);
+                    }
+                })
+                .fail(function(){
+                    console.log("Failed");
+                    alert("Select Category");
+                });
+            }*/
+
+        });
+
+
+    
+        $("#viewchart").click(function(){
+
+            
+
+             $(function() {
+                $.ajax({
+                    url: '{% url 'reviews:get_statistics_data' %}',
+                    type: 'POST',
+                    data:{cat:cat},
+                })
+                .done(function(data){
+                    console.log("Success");
+                    console.log(data);
+
+                    var ctx = document.getElementById('review-chart').getContext('2d');
+
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                              labels: data.labels,
+                              datasets: [{
+                                label: 'reviews',
+                                backgroundColor: 'blue',
+                                data: data.data
+                              }]
+                        },
+                        options: {
+                          responsive: true,
+                          legend: {
+                            position: 'top',
+                          },
+                          title: {
+                            display: true,
+                            text: 'Reviews Bar Chart'
+                          }
+                        }
+                    });
+                })
+                .fail(function(){
+                    console.log("Failed");
+                    alert("No data Available");
+                });
+             });
+
+        });
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+<section >
+            <div class="row">
+                <div class="form">
+                    <form class="register-form">
+                        <div class="row">
+                            <div class="col span-1-of-2">
+                            
+                            <label for="sel1" class="lables">Choose Category</label>
+                                <select name="category" id="category" title="Categories">
+                                     <option selected>--select--</option>
+                                            {% for category in categories %}
+                                                <option id="{{category.id}}" value="{{ category.id }}">{{category.catname}}</option>
+                                            {% endfor %}
+                                </select>
+                            </div>
+                         
+                            <div class="col span-1-of-2">
+                                <input type="button" id="viewchart" class="btn pull-right" value="View Chart" style="border:2px solid rgb(50, 50, 95);">
+                            </div>
+                        </div>
+                        <!--<div class="row chart-space"></div>-->
+                                  
+                    </form>
+                    
+                </div>
+            </div>
+            <div id="container" style="width: 90%; height: 50%; ">
+                <canvas id="review-chart"></canvas>
+            </div>
+          </div>
+        </section>
+
+
+</div>
+
+{% endblock %}

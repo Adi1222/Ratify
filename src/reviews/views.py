@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.contrib import messages
 from .forms import UserForm, Appuserform, AddProductForm, ReviewForm
@@ -11,6 +11,8 @@ from .models import *
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
 import datetime
+from django.views.decorators.csrf import csrf_exempt
+from django.core import serializers
 
 # Create your views here.
 
@@ -23,10 +25,10 @@ def login_request(request):
         print(_password)
 
         try:
-            u = User.objects.get(username=_username, password=_password)
-            print(u)
-            login(request, u)
-            if u is not None:
+            us = User.objects.get(username=_username)
+            print(us)
+            login(request, us)
+            if us is not None:
                 # return HttpResponse("You have successfully signed in !!")
                 # messages.success(
                 #    request, f"You are now logged in as {request.user.username}")
@@ -81,6 +83,33 @@ def homepage(request):
     return render(request, 'reviews/homepage.html', {'latest_review_list': latest_review_list, 'top_products': top_products})
 
 
+@csrf_exempt
+def get_products(request):
+    products = Product.objects.filter(
+        category_id=request.POST.get('category_id', ''))
+    product_obj = serializers.serialize('python', products)
+    return JsonResponse(product_obj, safe=False)
+
+
+@csrf_exempt
+def get_statistics_data(request, *args, **kwargs):
+    labels = []
+    data = []
+
+    catid = request.POST.get('cat', '')
+
+    products = Product.objects.filter(category_id=catid)
+
+    for p in products:
+        labels.append(p.pname)
+        data.append(p.total_rating())
+
+    return JsonResponse(data={
+        'labels': labels,
+        'data': data,
+    })
+
+
 def review_detail(request, review_id):
     review = get_object_or_404(Review, pk=review_id)
     return render(request, 'reviews/review_detail.html', {'review': review})
@@ -112,6 +141,11 @@ def user_review_list(request, username=None):
 def categories(request):
     categories = Category.objects.all()
     return render(request, 'reviews/categories.html', {'categories': categories})
+
+
+def statistics(request):
+    categories = Category.objects.all()
+    return render(request, 'reviews/statistics.html', {'categories': categories})
 
 
 def addproduct(request):

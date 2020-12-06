@@ -18,4 +18,29 @@
 
 ## Few Screenshots:
 
-### 1. 
+### 1.
+![](Screenshots/homepage.jpeg
+
+
+### 2.
+![](Screenshots/categories.jpeg
+
+
+### 3.
+![](Screenshots/chart1.png
+
+
+### 4.
+![](Screenshots/chart2.png
+
+
+### 5.
+![](Screenshots/recentreviews.jpeg
+
+
+### 6.
+![](Screenshots/product.jpeg
+
+
+### 7.
+![](Screenshots/products.jpeg

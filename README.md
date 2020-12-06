@@ -23,7 +23,7 @@
 
 
 ### 2.
-![](Screenshots/categories.jpeg)
+![](Screenshots/Categories.jpeg)
 
 
 ### 3.

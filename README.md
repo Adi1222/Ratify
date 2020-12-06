@@ -15,3 +15,7 @@
    iv). Run python manage.py migrate to make migrations
    v). Add a few queries in the database to see functioning
    vi). To run: python manage.py runserver
+
+## Few Screenshots:
+
+### 1. 
